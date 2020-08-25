@@ -96,7 +96,43 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
 * ### Javascript ES6
 
+  Is the Javascript standard to write the script and ensure the interoperability syntax to be working in all the browsers.
+
   * Difference between a normal Function and arrow => function?
+
+    *In Normal Functions* the word `this` (aka execution context) is dynamic. It means that the value of this it depends of how the function was invoked. (if we use strict mode will be undefined)
+      ```
+      //SIMPLE INVOCATION
+      function myFunction() {
+        console.log(this);
+      }
+
+      // Simple invocation
+      myFunction(); // logs global object (window)
+
+      //METHOD INVOCATION
+      const myObject = {
+        method() {
+          console.log(this);
+        }
+      };
+      // Method invocation
+      myObject.method(); // logs myObject
+      ```
+
+    *In Arrow Functions* `this` is always going to take the outer value function.
+
+    * Regular Functions can be used as a constructor of a new object. Let's say can be used as a class, since you can create new object using the work `new` before the name of the function.
+    
+    * With the arrow function the above is not possible for the `this` context.
+
+    * Regular functions can be defined without arguments and yet, you can still pass arguments and inside the function you can use the word `arguments` to get the params as an array
+
+    * The arrow functions instead can access the rest arguments `...args`
+
+    * With normal Functions, if you create a class and define normal functions as methods, you need to bind them to make it works.
+
+    * With arrow functions, you don't need to bind the method anymore.
 
   * How to use async/await?
 
