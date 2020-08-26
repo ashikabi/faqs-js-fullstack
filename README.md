@@ -136,31 +136,76 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
   * How to use async/await?
 
+    Are used to make asynchronous programming in Javascript:
+      
+      * `async` is the keyword used for declaration of the functions, it means the function will return a promise.
+
+      * `await` is used before calling a function, to indicate that the process will wait until the promise get the value
+
+      * `.then()` we also can use .then() to wait until the promise is resolved
+
   * What are and how does it works Promises?
+
+    Is an object that may produce a single value in the future. A promise can be in 3 possibles states: fullfilled, rejected and pending
 
   * Difference between map, and forEach, and Reduce?
 
+    * `map()` : return an array with the result of applying a function to every element of the original array.
+    * `forEach()` : Execute a function on every element of the current array. But it doesn't return anything.
+    * `reduce()` : Applies a function simultaneosly against two values of the array from left to right as to reduce it into a single value.
+
   * Difference between find and filter?
+
+    * `find()` : given a callback function as parameter it is applied to every element of the array, and return the first element that satisfied or match the conditions in the function.  
+
+    * `filter()` : similar to find, a callback function is passed as parameter and it is applied to every element of the array and gets only those elements that match the condition of the function and return all the elements that matches in a new array.
 
   * Difference between slice vs splice?
 
+    * `slice()` : extracts a section of an array and return a new array. Accept up to 2 parameters, but the first (start) is required. The second (end) is optional.
+    * `splice()` : Adds/Removes an element of an array. can receive at least 2  params: 1. index (where to start), 2. how many elements are going to be removed from the array. If zero is passed then no elements are removed. 3. or more params indicates the new elements to be added in the array. BTW return an element or an array of elements removed from the array or nothing, if zero.
+
   * Difference some and every?
+
+    * `some`: return true if at least one element of the array matches the condition in the callback function passed.
+    * `every`: return true if all the elements in the array matches the condition in the callback function passed
 
   * Difference between pop and shift?
 
+    * `pop()` : removes the last element of the array and return that element.
+    * `shift()`: removes the first element of the array and return that element.
+
   * Difference between push and unshift?
+
+    * `push()` : Adds one or more elements to the end of the array, and return the new length.
+    * `unshift()`: adds one or more elements to the front of the array and return the new length 
 
   * Difference between const, let?
 
+    * `const` : declaring variables as const, the value can't be reassigned.
+    * `let`:  the value of the variable can be reassigned
+
   * Difference between == and ===?
 
+    * `==` compare just the values
+    * `===` compare the values and the types
+
   * What is the result of typeof [] === typeof {}
+
+  * !! ?
+    
+    Return the boolean value of the value
 
   * Difference between SetTimeOut and SetInterval?
 
   * What is a CallBack?
 
   * What is a Callback Hell?
+
+  * What are closures in JS? 
+
+    Is the possibility of create a inner function inside of another (outter) function, and all the elements declared in the outer function can be used in the inner function.
+    Because is in the same scope of the outer function.
 
 * ### NodeJS
 
