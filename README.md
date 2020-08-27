@@ -192,15 +192,37 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
   * What is the result of typeof [] === typeof {}
 
+    Since an array is not a primiteve type [] is considered as an object same as {}. So that comparisson is true. Not the case of `1 === '1'` the result is false, because the 2nd parameter is a char, but `1 == '1'` is true, because only verify the values and not the type.
+
   * !! ?
     
-    Return the boolean value of the value
+    Return the boolean value of the value.
 
   * Difference between SetTimeOut and SetInterval?
+    This 2 functions are called timer functions so you can scheduling a call of any other function using those timers
+
+    * `setTimeout` executes the callback function that is passed as first argument after the time especified in milliseconds in the second parameter has passed.
+      To track the timeout the `setTimeout` function returns a timeout ID that is commonly used with `clearTimeout` and basically after call the setTimeout we can call the clearTimeout to stop the timer in the setTimeout. *The expression or callback function passed to the setTimeout is executed just once. Until the time specified in the setTimeout is reached*
+
+    * `setInterval` : basically has the same functionallity of setTimeout, with the difference of the callback function passed is executed always everytime the especified time in the setInterval is reached. Unless you call the stop by using `clearTimeout` 
 
   * What is a CallBack?
 
+    A callback is a function that is executed after another function has finished executing.
+    In JS functions are object, since functions can take functions as arguments and can be returned by other functions.(those functions are called `higher-order functions`)
+    So any function passed as an argument is called *callback function*
+
   * What is a Callback Hell?
+
+    Is when you have a bunch of nested callbacks because bad practice and read the code can be such a hard time.
+
+    * One way to fix that issue it depends, but use async await and assign the callback functions to variables and call the functions in a sequancial order using `await`
+
+    * Splitting out the functions in different files by modulurazing using `module.exports`
+
+  * What are the higher-order functions?
+
+    Are functions that either receives a function as an argument or returns a function as output.
 
   * What are closures in JS? 
 
@@ -211,13 +233,55 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
   * What is NodeJS?
 
+    is an open source crossplatform server environment.And an asynchronous event-driven JavaScript runtime. 
+    Nodejs uses a Concurrency model, in which OS threads are employed instead of process.
+    NodeJS was designed without threads
+
+  * What means that Javascript/nodejs is an "event driven language" ?
+
+    It means that by default JS doesn't waiting for a response before moving on.  
+    example:
+    ```
+    function first(){
+      // Simulate a code delay
+      setTimeout( function(){
+        console.log(1);
+      }, 500 );
+    }function second(){
+      console.log(2);
+    }first();
+    second();
+
+    .........
+    // result: 
+    first();
+    second();
+    // 2
+    // 1
+    ```  
+
+    In order to fix this issue Javascript has the `callbacks` that are functions, that are executed after another function has finished the execution.   
+
   * Mention some internal libraries that you have used with nodejs? 
 
     `http` to create a http-server, is the native version of express. `events` to send and receive events eventEmitters. `fs` to manipulate files.
   
-  * What are some frameworks of NodeJS?
-
   * Is NodeJS MultiThread or a single Thread?
+
+    NodeJs has an event-loop architecture that means that a single thread run and it will be executed until every tasks has finished, then exit the event loop.
+    Nodejs is a single thread language which in background uses multi threads to execute asynchronous code.
+    Nodejs is a non-blocking that means tha all functions/callbacks are delegate to the event loop and they can be executed by different thread.
+
+  * What is a Process?
+
+    A process is a program under execution. A process can have multipe threads
+
+  * What is a Thread?
+
+    A thread is the smallest sequence of programmed instructions. Here the BIG difference.
+    Threads within the same process run on a shared memory space, while every process has a separate memory space. 
+  
+  * What are some frameworks of NodeJS?
 
   * What is express?
 
@@ -226,6 +290,8 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
   * in express how does it work the function next();
 
   * What is HTTP verbs diff between put and patch?
+
+  * What is a JWT, how does it work?
 
 * ### OOP
 
@@ -252,12 +318,20 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
     * What is the difference between a Thread and a Process?
 
 * ### Functional Programming:
+
+  * What is a functional programming?
+
+    Is a form of programming in which you can pass functions as parameters to other functions and alsoreturn them as values.
   
   * How to implement/use/work with functional programming in JS?
 
+  * What are the First Class Functions?
+    
+    In javascript a function is a type of object. So with that concept in mind, a function can be pass as parameter of other function, and even can return a function. And functions can be assigned to variables, etc. So for that ability the functions in javascript are called First Class Functions.
+
   * What is a lambda function?
 
-  * What is a high level function?
+  * What is a high level function / high order functions ?
 
 * ### Miscelanious
   
