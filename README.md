@@ -89,6 +89,9 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
   React Native is a mobile aplication javascript framework that uses React Library that is compiled to native code, and React is a library of JS.
   `LocalStorage` for React and `AsyncStorage` for React Native. `dimension` in React, `import { Dimensions } from 'react-native';` then `const { height, width } = Dimensions.get('window');`
 
+* Difference between use Component vs PureComponent in React
+  The main difference is that PureComponent handles automatically `shouldComponentUpdate` where compares the current state and props with the next props, and so it has the advantage in terms of performance because the pureComponents doesn't re render always, just when the props and states changes. If they doesn't have any change they don't re render, and so the app it has a better performance. [source](https://codeburst.io/when-to-use-component-or-purecomponent-a60cfad01a81)
+
 
 
 ## BackEnd
