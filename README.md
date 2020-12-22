@@ -12,11 +12,13 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
 * What is ReactJS? 
 
-  ReactJS is library to work with javascript to create websites using JSX and Virtual DOM
+  ReactJS is javascript library to build UI components create websites using JSX and Virtual DOM
 
 * What is JSX?
 
-  JSX stands for Javascript Extension. This functionality it comes in ReactJS library and allow modify the DOM of the HTML using Javascript, and of course mixing javascript code in the HTML, hence with JSX you can modify the DOM of the HTML using kavascript.
+  - JSX stands for Javascript Extension, that in React allows you create React elements. 
+
+  - This functionality comes in ReactJS library and allows you modify the indirectly DOM in runtime, by modifying the virtual DOM.
 
 * What is DOM?
 
@@ -24,53 +26,94 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
 * What is Virtual DOM?
 
-  The action of use JSX to modify HTML using DOM with reactJS is called virtual DOM
+  - Virtual DOM is a copy in memory of the real DOM and the copy happen the first time the component is rendered (for the life cycle methods), this functionality comes in ReactDOM Library,
+    and that library makes comparisson against the both DOMs if they are different then, the ReactDOM copy the Virtual DOM into the real DOM and this process is a re-render of the component.
+
+  - which means that is the action of modifying HTML with jsx in reactJS and the application compares the DOM with the Virtual DOM, and if there are changes the componente is re rendered,
+    and apply the changes. [Reference](https://latteandcode.medium.com/y-eso-del-virtual-dom-de-react-qu%C3%A9-es-3feed6366925)
 
 * What is a component?
 
-  Are block of JSX codes that returns a React Element to represents a part of the UI, and either a component can be a class type or a function type.
+  Are blocks of JSX codes that returns a React Element to represents a part of the UI, and either a component can be a class component type or a function type (also know as stateless component).
     
     * Class component: requires extends from React.Component and create a Render Function which Return a React Element. So you will have a constructor and a local state, and the lifecycle methods. On the other hand...
     * Functional component / stateless component: Because they are just functions, you don't have a constructor hence, you don't have a local state. That's why the are also called stateless components.
 
+* Difference between use Component, PureComponent and Fragment
+
+    * PureComponent: Implements `shouldComponentUpdate()` what is does to make a comparisson with the previous props and state to next i the case of the primitives types of values, they compare the values, but in the case of objects they compared the references instead of the values. Improving the performance of the app , rendering the components faster than the Normal components.
+
+    * Fragment: Is a component that return multiple elements in the render without a wrapper or an aditional DOM element
+
 * What are the lifecycle methods?
+  Mounting:
+    * constructor()
+
+    * render(): the first method called, and print the HTML elements of the component.
   
-  * render(): the first method called, and print the HTML elements of the component.
+    * componentDidMount(): invoked right after component is mounted (aftert the tree of the virtual DOM is created). Initialization that requires DOM nodes should go here. If you need to load Data from an external API, this is the best place according the official documentation. Create subscriptions.
+  
+  Updating:
 
-  * componentDidMount(): invoked right after component is mounted (aftert the tree of the virtual DOM is created). Initialization that requires DOM nodes should go here. If you need to load Data from an external API, this is the best place according the official documentation. Create subscriptions.
+    * componentDidUpdate(): is invoked after updating happens, so you can modify DOM here, and you can also fetch Data from API and also you can compare the previous values with the new ones before re-render. This component is not called the in the first render
 
-  * componentDidUpdate(): is invoked after updating happens, so you can modify DOM here, and you can also fetch Data from API and also you can compare the previous values with the new ones before re-render.
+  Unmounting:
+  
+    * componentWillUnmount(): invoked before a component is unmounted and destroyed, so you could unsubscribe to listeners, stop timers, stop fetching from APIs etc.
 
-  * componentWillUnmount(): invoked before a component is unmounted and destroyed, so you could unsubscribe to listeners, stop timers, stop fetching from APIs etc.
+  Error Handling
+
+    * ComponentDidCatch()
 
 * What are the hooks lifecycle?
 
-  * useState(): manipulate a local state of the component. Equivalent of this.state/this.setState
+  * useState(): Returns a stateful value and a function to update it. Manipulate a local state of the component. Equivalent of this.state/this.setState
 
-  * useEffect(): Equivalent of the lifecycle methods, is called anytime a change on the state is made. So you can manipulate DOM, fetching data from API's here.
+  * useEffect(): Works as a ComponentDidMount, ComponentDidUpdate and ComponentWillUnmount. Is Called after the render of the component.
 
-  * Alternative of Redux:
-    * createContext(): is to Pass data, states, props between components, with createContext you define what data or props are needed to share for others components. Is aimed for global purpose. But if you want to pass certain data to another component, just pass the data to it, instead create a context.
-    
-    * useContext(): once a context is defined you can use their props by calling them.
+    - without a second argument: it will have the behavior and ComponentDidMount + ComponentDidUpdate. It menas it will be invoked after every render.
+    - with a second argument: with an empty array it will have the behavior of the componentDidMount
+    - with a second argument: with an array with elements, it will be invoked just when a change on the element of the array happen,
 
-    * useReducer(): alternative to useState only if the if the state logic is complex. And they usually come together with createContext using dispatch
+  * useLayoutEffect():
 
-* Where is the best place to call an API and render the result?
+  * useContext(): accepts a context object. To work with useContext first of all you need to create a Context. `createContext()` and also create a `contextProvider` with the values you want to share across the 
 
-    * componentDiMount() and useEffect(): because both are called after the initial render and after any update.
+    - the `contextProvider` is a function that accepts props and returns a wrapper provider, wrapping up all the children. It means if you wrap up a set of components with a context provider, all the component can have access to the values defined in the context Provider.
+
+  * useReducer(): 
+
+* What is a higher order component HOC?
+
+  - is a function that takes a component as argument and return a new component.
+
+  - common example is when you connect you component with redux. `export default connect(MyComponent)`
 
 * What is Hoisting in JS?
 
-    Is the behavior of JS to move the declarations to the top. So then variables and functions can be used before their declaration. BUT... just the declarations, not the initialization.
+    Is the behavior of JS to move the declarations of functions and variables to the top. So then functions can be called and their declaration can be after the called. BUT... just the declarations, not the initialization.
 
 * What is EcmaScript?
 
     is the standard of javascript the gives the rules of use it.
 
+* What are pure functions?
+
+  you can not mutate the paremeter, instead you need to return a new value
+
 * What is Redux and How does it works?
 
-  is a javascript library to manage the state of the whole app. And it is conformed by a unique storage, that it changed after invoke / dispatch actions, which has the logic of the new values that we want to update in the storage, by using reducer. And Reducers has the specification to update a especific state. Basically Redux is the new version of the Flux Architecture.
+  is a state mangament library for javascript apps to manage the whole state of the app. 
+  
+  Redux store the application state in a single javascript object which called store which is the single source of truth for the application state.
+  
+  Basically Redux is the new version of the Flux Architecture Pattern for manage states.
+
+  * Redux Dev Tools:
+
+    - for debugging you can recreate the scenarios easily
+    
+    - you can have a nice view of the actions and state in certain point in time
 
 * What is FlexBox?
 
@@ -90,7 +133,7 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
   `LocalStorage` for React and `AsyncStorage` for React Native. `dimension` in React, `import { Dimensions } from 'react-native';` then `const { height, width } = Dimensions.get('window');`
 
 * Difference between use Component vs PureComponent in React
-  The main difference is that PureComponent handles automatically `shouldComponentUpdate` where compares the current state and props with the next props, and so it has the advantage in terms of performance because the pureComponents doesn't re render always, just when the props and states changes. If they doesn't have any change they don't re render, and so the app it has a better performance. [source](https://codeburst.io/when-to-use-component-or-purecomponent-a60cfad01a81)
+  The main difference is that PureComponent handles automatically `shouldComponentUpdate` where compares the current state and props with the next props, and so it has the advantage in terms of performance because the pureComponents doesn't re render always, just when the props and states changes. If they don't have any change they don't re render, and so the app it has a better performance. [source](https://codeburst.io/when-to-use-component-or-purecomponent-a60cfad01a81)
 
 
 
@@ -99,29 +142,11 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
 * ### Javascript ES6
 
-  Is the Javascript standard to write the script and ensure the interoperability syntax to be working in all the browsers.
+  Is the Javascript standard to write the script and ensure the interoperability syntax to be working in all the browsers and in server side with nodejs
 
   * Difference between a normal Function and arrow => function?
 
     *In Normal Functions* the word `this` (aka execution context) is dynamic. It means that the value of this it depends of how the function was invoked. (if we use strict mode will be undefined)
-      ```
-      //SIMPLE INVOCATION
-      function myFunction() {
-        console.log(this);
-      }
-
-      // Simple invocation
-      myFunction(); // logs global object (window)
-
-      //METHOD INVOCATION
-      const myObject = {
-        method() {
-          console.log(this);
-        }
-      };
-      // Method invocation
-      myObject.method(); // logs myObject
-      ```
 
     *In Arrow Functions* `this` is always going to take the outer value function.
 
@@ -234,11 +259,18 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
 * ### NodeJS
 
+  * What is a closure?
+
+    - is a block of that wrap a scope and context. For example whenever you create a function you are creating a closure for that function, it means everything inside that function has a context that you can accessed via `this` keyword and if you can a sub function inside the master function the subfunction is enclosured for the main function.
+
+    - so the inner function will have access to the varibles or properties of the outer function
+
   * What is NodeJS?
 
-    is an open source crossplatform server environment.And an asynchronous event-driven JavaScript runtime. 
-    Nodejs uses a Concurrency model, in which OS threads are employed instead of process.
-    NodeJS was designed without threads
+    is a javascript runtime environment and same as the javacript in browsers, nodejs also run on the V8 Javascript runtime engine.
+    Which takes the javascript code and converted it into machine code.
+
+    Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient: It means that the flow of the execution of the program doesn't wait to continue, 
 
   * What means that Javascript/nodejs is an "event driven language" ?
 
@@ -277,7 +309,7 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
 
   * What is a Process?
 
-    A process is a program under execution. A process can have multipe threads
+    A process is a program under execution. A process can have multiple threads
 
   * What is a Thread?
 
@@ -286,69 +318,219 @@ The present Repo is aimed for all the Devs who claimed themselves Javascriopt Fu
   
   * What are some frameworks of NodeJS?
 
+      - nestjs
+      - expressjs
+
   * What is express?
+
+    - expressjs is node module sometimes is called a framework, but at the end of the day is a module to help you creating a RestFul API.
 
   * Using express what is a middleware?
 
+    - A middleware is a interceptor function that takes the request apply some logic and if it the logic is passed well, the flow execution continues calling the `next()` function, otherwise you need to finish the logic with a response with the correct error code.
+
   * in express how does it work the function next();
+
+    - Well basically is used to continue the flow execution of the logic inside of an endpoing. In overall is used in middleware functions where the request is taken and is applied some logic, if the condition is satisfied the instruction to continuie with the next middleware of with the next logic is using the `next()` function.
 
   * What is HTTP verbs diff between put and patch?
 
+    - PUT : is used for updates, but it refers to a whole update over an object on the other hand
+    - PATCH: is used for update a some attributes of an object, not the whole object.
+
   * What is a JWT, how does it work?
+
+    - JSON WEB TOKEN: is a token used to create an id with an expiration time, and usually is used to make secure the communication between the front-end and backend.
+      basically the backend creates the jwt and defines an expiration time for that token and that token is passed to the front end which will be using it to make all the API calls,
+      which means that for some reason the front end sends an expired token or not send any token, the api call is rejected.
 
 * ### OOP
 
+    * what is a OOP programming?
+
+      - is a programming paradignm in which objects are used to represent things
+
     * What is a Class?
+
+      - Let's say is a code template for creating objects, providing initial values for states, using a constructor, Implementing behaviors using methods.
 
     * What is an object?
 
-    * Difference between a Function Class and an Actual Class in JS?
+      - is the instance of an class: whichs is an element created by a class that has attributes, behaviors, and in overall the object is a representation a class.
 
     * How it is used static keyword in JS/Classes?
 
+      - First of all whenever you use the `static` keywork the variable or the method is going to be declared once in the memory, which means.
+      - The `static` keywork is commonly used to share a variable or a method across all the instances of the class, is not tied to any particular object, in fact is tied to the class.
+
     * What is an Abstract Class?
+
+      - An Abstract class can not be instantiated, but can have a constructor The idea behind an abstract class is to be a template for classes so abstract classes can have implemented methods or just declared methods, are designed to be inherited by subclasses. 
+      
+      - The classes that inherit from the abstract classes commonly implements or override their methods.
+
+      - in Abstract you just can extends
 
     * What is an Interface in JS?
 
+      - is a Class with only declaration of their methods, without any implementation, and without a constructor, can not be instantiated just inherited. They are like a blueprint for a general purpose.
+
+      - in Interface you need to implements
+
     * How does it works the inheritance?
+
+      - There is a class that acts as a master class where subclasses extends(or inherited) the behaviors and attributes of a master class, they also can override or implements theirs methods
+
+    * How do we use `super()` in classes
+
+      - The `super()` keyword is used in subclasses whenever we extends from a master class and is used to refer to the master class which means whenever we create an instance of the subclass, automatically we will have an instance of their master class as well.
+
+      - is used to refere to inmediate parent class variable
+      - is used to refer to inmediate parent class methods
+      - is used to refer to inmediate parent class constructor 
 
     * How does it works polymorphism and overload functions in JS?
 
-    * What is a Thread?
+      -  Is when an object can have multi forms what it means is for example we have 3 classes, the class C is a subclass of the Class B and class B implements from class A.
 
-    * What is a Process?
+      - the sub class C can override a method from the class B whichs means the same the same method can have different implementation/behavior and the parent method can be called using the super keyword.
 
-    * What is the difference between a Thread and a Process?
+      - Allow us to perform a single action in different ways
+
+    * overload/overcharged funcitons?
+
+      - you can define the same method multiple times and you can call them with different parameter list
 
 * ### Functional Programming:
 
   * What is a functional programming?
 
-    Is a form of programming in which you can pass functions as parameters to other functions and alsoreturn them as values.
+    Is a form of programming in which you can pass functions as parameters to other functions and also return them as values.
+
+    is a programming paradigm: In functional programming the idea is to avoid change values, or mutate data
   
   * How to implement/use/work with functional programming in JS?
 
-  * What are the First Class Functions?
-    
-    In javascript a function is a type of object. So with that concept in mind, a function can be pass as parameter of other function, and even can return a function. And functions can be assigned to variables, etc. So for that ability the functions in javascript are called First Class Functions.
+    - First Class Functions: are functions aimed to be passed around to others functions, and they should be accomplish a specific thing, and be called by the other functions.
+
+    - The functions that accept a functions as parameter are called "higher order functions" that also can return a function.
+
+    - The functions that are passed as parameter are also called callback.
+
+    - [reference here](https://medium.com/@olinations/first-class-functions-higher-order-functions-callback-functions-4daad4856242)
 
   * What is a lambda function?
 
-  * What is a high level function / high order functions ?
+    - is an annonymous function that consists in only one expression and can take one or multiple parameters to other functions,
+
+    - in javascript is achieved using the arrow function `=>` (annonymous functions)
+
+  * How can you achieved Unit test in nodejs?
+
+    - Mocha: is a testing framework for NodeJS ==>  I have worked with Jest with is a library to make unit tests in React, and I have seen a little bit of Mocha and pretty much works the same,
+        where you describe the test and then describe any unit  test case making assertions. 
+
+    - Chai
+
+    - Jest:  Describe the test, then describe the specific unit test and expect a value / or assert
+
+    - Jasmine
+
+  * What is Typescript?
+
+    - is an opensource programming language built on javascript, I would say is an extension of javascript that allows define types for variables and objects. 
+    So allows you to describe in a better way a class, objects and functions. Which makes a code more readable, and and because has a superior layer it has a validation before compiling the code
+
+    - typescript code is transformed to javascript via the typescript compiler or babel
+
+    - Babel: 
+      is javascript compiler and in the case of React Babel convert JSX into javascript
 
 * ### Miscelanious
+
+  * What is a Microservice:
+
+    - has the style of SOA services (Service oriented architecture): where the app is created with multi connected services with specific functions.
+
+    - the idea behind the microservices is to breaking down the whole app in smalles pieces of services with their own functionality but working in harmony,
+
+    - achieving modularity
+
+    - with beneficts of high scalability, flexibility for teamwork and development
+
+    - With microservices you are not tied to one framework, or language, since they are monolitic you only need to build a restful API in any languagem that can be nodejs, java, python, etc.
+
+  * Benefits of using nodejs:
+
+    - Single threaded: in short terms the main thread used in nodejs called event loop is the one that handles and allows the non blocking input/outputs, so the executiong flow is not waiting for aany response, that makes a quick execution alongside with the V8 javascript runtime engine.
+    
+    - the event loop handles the asyncronous request moving the request from the call stack to the nodejs API, and the call stack continuos the execution without waiting, once the request is resolved,
+      the event loop moves the reslved request in the tasks queue until the call stack finish the execution, then the event loop moves the response to the call stack.
+
+    - because is an event-driven  model.
+
+  * SOAP vs Rest:
+
+    - SOAP: Simple Object Access Protocol and it was the first approach for a communication between 2 platforms with differenct technology, and the commonly interaction it was with XML/XHTML
+       - This is a protocol
+       - Requires a Service interface to expose its functionality to client application, expose the WSDL. 
+       - Requires a WSDL (has the required information on what the web service does. The Definition of the web service)
+       - only works with XML/XHTML
+       - the messages or response are greater in size than REST since it is using XML and has more verbose tags/schema
+       - so it requires more bandwidth
+
+    - Restful API: the new approach to achieve the same idea os SOAP. Representational State Transfer
+      - This is an Architectural pattern
+      - Doesn't need to expose interfaces, just the endpoints
+      - can work with JSON, XML, XHTML, HTML
+      - the messages or response are lighter, it doesn't required much bandwidth
+      - All that SOAP can do, RestFul API also can do, but not viceversa.
+
+    - API: Application Program Interface: allows the communication between to application
+
   
   * What are the Design Patterns?
 
+    - or is a way to create a solution
+    
+    - Creational Patterns:
+      Abstract Factory, builders, factory methods, prototype, singleton
+
+    - Structural Patterns:
+      Adapter, Bridge, decorator, facade, private class/static/mutators
+
+    - Behavioral patterns:
+      change of resposibility, command, interpreter, iterator, mediator, memento, null object, template methods
+
   * What are the common desging patterns used?
+
+    - creational patter for OOP
+
+    - Behavioral patter for functional programming
 
   * What it means S.O.L.I.D.?
 
+    - are the 5 principles of oop
+
+    - Single Responsibility :  a Class should have one purpose, one job, one responsibility
+    - Open Closed: The class should be easily extandable without modifying the class itself
+    - Liskov substitution : Basically is the polymorphisim approach, that every subclass should be substitutable by the parent class 
+    - interface segregation: the ability to create interface and not necessary create classes that implements from the interface
+    - dependency inversion: it means that low level classes shouldn't depend on high level classes. Both should depend on abstraction so they should depend on interfaces.
+
   * What it means A.C.I.D.?
+
+    - Atomicity: Database transactions should be broken down in smaller parts. If one part of the transaction fails the whole transaction should fail as well.
+    - Consistency: when a transaction comes and the result is not the expected, a rollback should be called to keep the consistency
+    - Isolation: one transaction shouldn't affect others transacttion if they are being executing concurrently
+    - Durability:
   
-  * event-driven programming mean?
+  * event-driven programming mean? 
+    - is a program paradigm  in which the flow of program execution is determined by events. Events are any user interaction
 
   * What is a RestFull API?
+
+  * Design Patterns
 
 
 
