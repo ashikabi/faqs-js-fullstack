@@ -8,7 +8,7 @@ The present Repo is aimed for all the Devs who claimed themselves Javascript Ful
 
 * What is Javascript?
 
-  Javascript is a program language following the specification of EcmaScript is the standard and that rules the correct way to write javascript code. Nowadays Javascript runs on both, client side (web browsers) and server side (nodejs)
+  Javascript is a program language following the specification of EcmaScript is the standard and the rules of the correct way to write javascript code. Nowadays Javascript runs on both, client side (web browsers) and server side (nodejs)
 
 * What is ReactJS? 
 
