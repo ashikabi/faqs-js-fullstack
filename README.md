@@ -1,6 +1,6 @@
 # FAQ for a JS Fullstack Dev
 
-The present Repo is aimed for all the Devs who claimed themselves Javascriopt FullStack using ReactJS, React Native and NodeJS who know how to work, but sometimes forgot the technical concepts behind of the things.
+The present Repo is aimed for all the Devs who claimed themselves Javascript FullStack using ReactJS, React Native and NodeJS who know how to work, but sometimes forgot the technical concepts behind of the things.
 
 
 ## FrontEnd
